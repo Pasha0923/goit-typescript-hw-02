@@ -1,19 +1,28 @@
 import css from "./SearchBar.module.css";
 import toast, { Toaster } from "react-hot-toast";
 import { Field, Form, Formik } from "formik";
+
+interface SearchBarProps {
+  onSubmit: (query: string) => void;
+}
+interface FormValues {
+  query: string;
+}
+interface FormReset {
+  resetForm: () => void;
+}
 const notification = () =>
   toast.error("You should enter a search term!", {
     duration: 3000,
     icon: "🙂",
   });
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (values, { resetForm }) => {
+const SearchBar = ({ onSubmit }: SearchBarProps) => {
+  const handleSubmit = (values: FormValues, { resetForm }: FormReset) => {
     if (values.query.trim() === "") {
       notification();
     }
     onSubmit(values.query);
-
     resetForm();
   };
 
