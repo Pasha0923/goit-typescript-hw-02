@@ -33,8 +33,10 @@ function App() {
         setIsLoading(true);
         setIsError(false);
         setModalIsOpen(false);
+
         const data: IData = await requestImages(searchQuery, page);
-        // console.log(data.results);
+        console.log(data.results);
+
         const noquery = () =>
           toast.error("Sorry, there are no images matching your search query", {
             duration: 4000,

@@ -21,8 +21,9 @@ const SearchBar = ({ onSubmit }: SearchBarProps) => {
   const handleSubmit = (values: FormValues, { resetForm }: FormReset) => {
     if (values.query.trim() === "") {
       notification();
+      return;
     }
-    onSubmit(values.query);
+    onSubmit(values.query.trim());
     resetForm();
   };
 
